@@ -7,7 +7,27 @@
     <title>BCCA Library</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body class="container p-5">
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">BCCA Library</a>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'sign-up' %}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </nav>
+    {% if user.is_authenticated %}
+    <p>Hello {{ user.username }}</p>
+    {% endif %}
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.level_tag }}">
@@ -15,7 +35,9 @@
             </div>
         {% endfor %}
     {% endif %}
-    {% block content %}
-    {% endblock content %}
+    <main class="container p-5">
+        {% block content %}
+        {% endblock content %}
+    </main>
 </body>
 </html>

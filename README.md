@@ -88,9 +88,9 @@ using the context key `"books"`.
 
 `borrow_book` has two cases:
 
-- if the book is in stock, the book is updated for `in_stock` to be
+- If the book is in stock, the book is updated for `in_stock` to be
   `False` and a success message of `Borrowed <title> by <author>` is
-  added
+  added. Also, a `"CHECKOUT"` `Transaction` should be created.
 - if the book is not in stock, the an error message of
   `<title> by <author> is unavailable` is added
 
@@ -102,7 +102,7 @@ either way, the user is redirected to `home`
 
 - if the book is not in stock, the book is updated for `in_stock` to be
   `True` and a success message of `Returned <title> by <author>` is
-  added
+  added. Also, a `"CHECKIN"` `Transaction` should be created.
 - if the book is in stock, the an error message of
   `<title> by <author> is already here` is added
 
