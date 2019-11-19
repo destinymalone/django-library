@@ -2,25 +2,25 @@
 {% block content %}
 <h1>Books</h1>
 <ul>
-{% for book in books %}
-<li class="card">
-    <div class="card-body">
-        <h2 class="card-title">{{ book.title }}</h2>
-        <p class="card-subtitle">by {{ book.author }}</p>
-        <p class="card-text">{{ book.description }}</p>
-        {% if book.in_stock %}
+    {% for book in books %}
+    <li class="card">
+        <div class="card-body">
+            <h2 class="card-title"><a href="detail/{{ book.id }}/detail">{{ book.title }}</a></h2>
+            <p class="card-subtitle">by {{ book.author }}</p>
+            <p class="card-text">{{ book.description }}</p>
+            {% if book.in_stock %}
             <form action="{% url 'borrow_book' book.id %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-primary">Borrow</button>
             </form>
-        {% else %}
+            {% else %}
             <form action="{% url 'return_book' book.id %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-primary">Return</button>
             </form>
-        {% endif %}
-    </div>
-</li>
-{% endfor %}
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock content %}

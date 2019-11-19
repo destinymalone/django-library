@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import timezone
 
 
 class Book(models.Model):
@@ -11,13 +12,14 @@ class Book(models.Model):
     in_stock = models.BooleanField()
     description = models.TextField()
 
+
 # class User(models.Model):
 #     id = models.AutoField(primary_key=True)
 #     username = models.TextField()
 
 
 class Transaction(models.Model):
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(default=timezone)
     action = models.TextField()
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
