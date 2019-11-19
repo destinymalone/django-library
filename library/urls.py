@@ -26,5 +26,5 @@ urlpatterns = [
     path("login/", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("sign-up/", views.SignUpView.as_view(), name="sign-up"),
-    path("detail/<book_id>/detail", views.book_detail, name="book_detail"),
+    path("book/<book_id>", views.book_detail, name="book_detail"),
 ]

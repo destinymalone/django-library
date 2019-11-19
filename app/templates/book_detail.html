@@ -4,18 +4,27 @@
 <ul>
     <div class="card">
         <div class="card-body">
-            <h1 class="card-subtitle">Author {{ book.author }}</h1>
-            <h1 class="card-subtitle">Title {{ book.title }}</h1>
-            <dl>
-                {% for transaction in book.transaction_set.all %}
-                <dt>Checked In</dt>
-                <dd>{{ transaction.datetime }}</dd>
-                <dt>Borrower's Name</dt>
-                <dd>${{ transaction.user.username }}</dd>
-                <dt>Checked Out</dt>
-                <dd>{{ transaction.action }}</dd>
-                {% endfor %}
-            </dl>
+            <h1 class="card-subtitle">Author: {{ book.author }}</h1>
+            <h1 class="card-subtitle">Title: {{ book.title }}</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Datetime</th>
+                        <th>User</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for transaction in book.transaction_set.all %}
+                    <tr>
+                        <td>{{ transaction.datetime.now }}</td>
+                        <td>${{ transaction.user.username }}</td>
+                        <td>{{ transaction.action }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             <a href="{% url 'home' %}" class="card-link">Back to Library</a>
         </div>
     </div>
