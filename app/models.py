@@ -17,6 +17,8 @@ class Book(models.Model):
 #     id = models.AutoField(primary_key=True)
 #     username = models.TextField()
 
+# Imported User so no need to create a model.
+
 
 class Transaction(models.Model):
     datetime = models.DateTimeField(default=timezone)
